@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+{% include 'admin/_adminNav.html'%}
+<h1 class="text-center bg-primary">List of Users</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Sr</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Contact No</th>
+        <th>Zipcode</th>
+      </tr>
+    </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+    <td>{{loop.index}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.country}}</td>
+    <td>{{user.state}}</td>
+    <td>{{user.city}}</td>
+    <td>{{user.address}}</td>
+    <td>{{user.contact}}</td>
+    <td>{{user.zipcode}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}

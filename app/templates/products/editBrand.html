@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% include 'admin/_adminNav.html' %}
+<div class="">
+  {% if brands %}
+    <div class="text-center h1 text-white bg-primary">{{title}}</div>
+    <form method='POST' enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.name(class="form-control",  placeholder="Brand Name")}}
+        {{ form.submit(class='btn btn-info mt-2', value=title) }}
+      </div>
+    </form>
+    <a href="{{url_for('admin.brands')}}" class="btn btn-warning" style="margin-top:-65px; margin-left:130px;">Cancel</a>
+  {% else %}
+    <div class="text-center h1 text-white bg-primary">{{title}}</div>
+    <form method='POST' enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.name(class="form-control", placeholder="Category Name")}}
+        {{ form.submit(class='btn btn-info mt-2', value=title) }}
+
+      </div>
+    </form>
+    <a href="{{url_for('admin.category')}}" class="btn btn-warning" style="margin-top:-65px; margin-left:180px;">Cancel</a>
+  {% endif %}
+</div>
+
+
+  </div>
+</div>
+{% endblock %}
