@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="text-center h1 text-white bg-primary">{{title}}</div>
+        {% include 'includes/_messages.html' %}
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form method='POST' enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+        <div>
+          {{ render_field(form.email, class='form-control') }}
+          {{ render_field(form.password, class='form-control') }}
+        </div>
+        <p>  {{ form.submit(class='btn btn-info mt-2') }}</p>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+
+    </div>
+  </div>
+{% endblock %}

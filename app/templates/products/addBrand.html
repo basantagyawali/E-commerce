@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+{% include 'admin/_adminNav.html' %}
+<div class="">
+  {% if brands %}
+    <div class="text-center h1 text-white bg-primary">Add Brand</div>
+    <form method='POST' enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.name(class="form-control",  placeholder="Brand Name")}}
+        {{ form.submit(class='btn btn-info mt-2') }}
+      </div>
+    </form>
+  {% else %}
+    <div class="text-center h1 text-white bg-primary">Add Category</div>
+    <form method='POST' enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.name(class="form-control", placeholder="Category Name")}}
+        {{ form.submit(class='btn btn-info mt-2') }}
+
+      </div>
+    </form>
+  {% endif %}
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
