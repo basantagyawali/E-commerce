@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="text-center h1 text-white bg-primary">Login</div>
+        {% include 'includes/_messages.html' %}
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form method='POST' enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+        <div>
+          {{ render_field(form.username, class='form-control') }}
+          {{ render_field(form.password, class='form-control') }}
+        </div>
+        <p>  {{ form.submit(class='btn btn-info mt-2') }}</p>
+        <p>Doesn't Have Account? <a  class="btn btn-primary sm"href="{{url_for('customers.customerRegister')}}">Register Here!</a></p>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+
+    </div>
+  </div>
+{% endblock %}

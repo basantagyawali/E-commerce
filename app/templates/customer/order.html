@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title%}
+  {{ title }}
+{% endblock %}
+
+{% block body %}
+{% include 'includes/nav.html' %}
+<div class="container mt-4">
+  {% include "includes/_messages.html" %}
+  <div class="row">
+    <div class="col-md-12">
+      Invoice: {{orders.invoice}}<br>
+      Status: {{orders.status}}<br>
+      Customer Name: {{customer.name}}<br>
+      Customer Email: {{customer.email}}<br>
+      Customer Contact:  {{customer.contact}}<br><br>
+    <table class="table table-sm">
+      <thead>
+        <th>Sr</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Subtotal</th>
+      </thead>
+      <tbody>
+        {% for key, product in orders.orders.items() %}
+        {% set discount= "%.2f" |format((product.discount/100) * product.price|float)%}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.color}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.price}}</td>
+          {% if product.discount > 0 %}
+          <td>{{product.discount}}% &nbsp; is {{discount}}</td>
+          {% else %}
+          <td></td>
+          {% endif %}
+          {% set subtotal = product.quantity|int * product.price|float %}
+          <td>{{"%0.2f"|format((subtotal|float)-(discount|float)) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <table class="table table-sm">
+      <tr>
+      <td><a href="{{url_for('index')}}" class="btn btn-success">Back</a></td>
+      <td width="35%"></td>
+      <td colspan="3"><h4>Tax: {{tax}}</h4></td>
+      <td colspan="5"><h4>Grand Total: {{grandtotal}}</h4></td>
+      <td>
+        <form action="{{url_for('customers.getPDF', invoice=orders.invoice)}}" method="post">
+            <button type="ssubmit" class="btn btn-sm btn-info float-right mr-2">Get PDF</button>
+        </form>
+      </td>
+
+      </tr>
+    </table>
+
+  </div>
+</div>
+</div>
+{% endblock %}
