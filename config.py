@@ -12,4 +12,5 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    #location for photo upload 
     UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/images')
