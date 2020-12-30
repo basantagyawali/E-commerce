@@ -49,3 +49,7 @@ app.register_blueprint(customers_blueprint, url_prefix='/customer')
 
 from .carts import bp as carts_blueprint
 app.register_blueprint(carts_blueprint)
+
+from .error  import bp as error_blueprint
+app.register_blueprint(error_blueprint)
+

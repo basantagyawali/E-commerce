@@ -14,3 +14,4 @@ class Config(object):
 
     #location for photo upload 
     UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/images')
+    

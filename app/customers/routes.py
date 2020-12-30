@@ -1,5 +1,5 @@
 from app import app, db, bcrypt
-from flask import render_template, request, flash, redirect, url_for, session, make_response
+from flask import render_template, request, flash, redirect, url_for, session, make_response, abort 
 from .forms import CustomerRegisterForm, CustomerLoginForm
 from flask_login import logout_user, login_required, login_user, current_user
 from ..products.models import Products, Brand, Category
@@ -58,6 +58,7 @@ def getOrder():
         except Exception as e:
             print(e)
             flash("Something went wrong while getting order", "danger")
+            abort(500)
     flash(u"Please first create your account", "danger")
     return redirect(url_for('customers.customerLogin'))
 
